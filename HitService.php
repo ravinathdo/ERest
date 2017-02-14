@@ -19,8 +19,9 @@ switch ($channel) {
         updateParkingStatus($id, $status);
         break;
     case "TABLE":
-        break;
         echo 'Table started ' . $channel;
+        updateTableStatus($id, $status);
+        break;
 }
 
 function updateParkingStatus($id, $status) {
@@ -55,7 +56,17 @@ function isParkingReservedForNow($id) {
 }
 
 function updateTableStatus($id, $status) {
-    
+   $conn = getDBConnection();
+    if (!$conn) {
+        die("Connection failed: " . mysqli_connect_error());
+    }
+    $sql = "UPDATE tbl SET STATUS = '$status' WHERE tableno = '$id'";
+    if (mysqli_query($conn, $sql)) {
+        echo "<br>Table updated successfully, ->".$status;
+    } else {
+        echo "Error updating record: " . mysqli_error($conn);
+    }
+    mysqli_close($conn);
 }
 
 function updateSlotStatus($id, $status) {
@@ -65,7 +76,7 @@ function updateSlotStatus($id, $status) {
     }
     $sql = "UPDATE slot SET STATUS = '$status' WHERE slotno = '$id'";
     if (mysqli_query($conn, $sql)) {
-        echo "<br>slot updated successfully, FREE->".$status;
+        echo "<br>slot updated successfully, ->".$status;
     } else {
         echo "Error updating record: " . mysqli_error($conn);
     }
