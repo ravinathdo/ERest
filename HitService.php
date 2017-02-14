@@ -4,8 +4,8 @@ include './_function.php';
 
 /*
  * Get the hit from sensor and make update on the table 
- * http://localhost:81/ERest/HitService.php?channel=PARKING&id=5&status=FREE
- * http://localhost:81/ERest/HitService.php?channel=TABLE&id=10&status=FREE
+ * http://localhost:81/ERest/HitService.php?channel=PARKING&id=1&status=FREE
+ * http://localhost:81/ERest/HitService.php?channel=TABLE&id=1&status=FREE
  */
 
 $channel = $_GET['channel'];
