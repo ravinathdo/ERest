@@ -1,0 +1,2 @@
+ SELECT *  FROM slot_reservation WHERE NOW() BETWEEN from_time AND to_time
+ AND STATUS = 'BUK' AND slotno = '1'
