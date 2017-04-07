@@ -45,9 +45,11 @@ CREATE TABLE `order_tbl` (
   `updatedate` varchar(20) DEFAULT NULL,
   `updateuser` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 /*Data for the table `order_tbl` */
+
+insert  into `order_tbl`(`id`,`totalamount`,`status`,`createddate`,`createduser`,`updatedate`,`updateuser`) values (1,'3000','PND','2017-03-16 14:34:46',2,NULL,NULL);
 
 /*Table structure for table `orderitem` */
 
@@ -59,11 +61,11 @@ CREATE TABLE `orderitem` (
   `itemid` int(5) DEFAULT NULL,
   `qty` int(5) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=latin1;
 
 /*Data for the table `orderitem` */
 
-insert  into `orderitem`(`id`,`orderid`,`itemid`,`qty`) values (1,3,4,2),(2,4,2,5),(3,5,2,3),(4,6,2,4),(5,7,1,5),(6,7,2,8),(7,8,1,5),(8,9,1,6),(9,12,3,5),(10,13,1,5),(11,13,2,3),(12,14,1,2),(13,14,2,2),(14,14,3,2),(15,14,4,2),(16,16,1,2),(17,16,2,2),(18,17,1,2),(19,17,2,2),(20,19,1,2),(21,19,2,5),(22,20,1,2),(23,20,2,5),(24,21,1,3),(25,21,2,4);
+insert  into `orderitem`(`id`,`orderid`,`itemid`,`qty`) values (1,3,4,2),(2,4,2,5),(3,5,2,3),(4,6,2,4),(5,7,1,5),(6,7,2,8),(7,8,1,5),(8,9,1,6),(9,12,3,5),(10,13,1,5),(11,13,2,3),(12,14,1,2),(13,14,2,2),(14,14,3,2),(15,14,4,2),(16,16,1,2),(17,16,2,2),(18,17,1,2),(19,17,2,2),(20,19,1,2),(21,19,2,5),(22,20,1,2),(23,20,2,5),(24,21,1,3),(25,21,2,4),(26,1,1,2);
 
 /*Table structure for table `slot` */
 
@@ -141,7 +143,7 @@ CREATE TABLE `tbl` (
 
 /*Data for the table `tbl` */
 
-insert  into `tbl`(`tableno`,`status`,`dateupdated`) values (1,'FREE','2017-02-14 14:27:22'),(2,'FREE','2017-03-16 13:46:21'),(3,'FREE','2017-03-16 13:46:31');
+insert  into `tbl`(`tableno`,`status`,`dateupdated`) values (1,'','2017-02-14 14:27:22'),(2,'VACANT','2017-03-16 13:46:21'),(3,'VACANT','2017-03-16 13:46:31'),(4,'VACANT','2017-04-03 10:38:41'),(5,'VACANT','2017-04-03 10:38:41'),(6,'VACANT','2017-04-03 10:38:48');
 
 /*Table structure for table `tbl_order` */
 
@@ -199,11 +201,11 @@ CREATE TABLE `user` (
   UNIQUE KEY `NewIndex3` (`username`),
   KEY `NewIndex1` (`username`),
   KEY `NewIndex2` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 /*Data for the table `user` */
 
-insert  into `user`(`id`,`firstname`,`lastname`,`username`,`password`,`email`,`telephone`,`datecreated`,`role`,`status`) values (1,'Umair','Umair','admin','*667F407DE7C6AD07358FA38DAED7828A72014B4E','umair@gmail.com','071000111','2017-03-16 13:45:59','ADM','ACT');
+insert  into `user`(`id`,`firstname`,`lastname`,`username`,`password`,`email`,`telephone`,`datecreated`,`role`,`status`) values (1,'Umair','Umair','admin','*667F407DE7C6AD07358FA38DAED7828A72014B4E','umair@gmail.com','071000111','2017-03-16 13:45:59','ADM','ACT'),(2,'ashenp','ash','ashenp','*23AE809DDACAF96AF0FD78ED04B6A265E05AA257','as@g.com','071','2017-03-16 14:08:58','CUS','ACT'),(3,'w','w','w','*667F407DE7C6AD07358FA38DAED7828A72014B4E',NULL,NULL,'2017-03-16 14:34:58','WTR','ACT');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

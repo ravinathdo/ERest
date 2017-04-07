@@ -192,7 +192,11 @@ if(!isset($_SESSION['user_role'])){
 									?>
 									<a href="smartTable.php?action=on&tableNo=<?php echo $row['tableno'] ?>"><button>RESERVED</button></a>
 									<?php
-									} ?></td>
+									}else{
+									?>
+									<a href="smartTable.php?action=off&tableNo=<?php echo $row['tableno'] ?>"><button>Retry-VACANT</button></a>
+									<?php
+										} ?></td>
                               </tr>
 
                             <?php
