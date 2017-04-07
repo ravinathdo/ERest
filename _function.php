@@ -7,10 +7,20 @@
  */
 
 function getDBConnection() {
-    $servername = "localhost";
-    $username = "root";
-    $password = "123";
-    $db = "erest_db";
+    /* */
+      $servername = "localhost";
+      $username = "root";
+      $password = "123";
+      $db = "erest_db";
+     
+
+	/* 000webhost
+     $servername = "localhost";
+    $username = "id1080794_ravinathdo";
+    $password = "123@com";
+    $db = "id1080794_erest_db";
+	*/
+
 // Create connection
     $conn = mysqli_connect($servername, $username, $password, $db);
 // Check connection
@@ -20,10 +30,5 @@ function getDBConnection() {
         return $conn;
     }
 }
-
-function updateParkingSlotAuto($slotno,$status){
-    
-}
-
 ?>
 

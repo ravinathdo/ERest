@@ -592,14 +592,14 @@ p {
 }
 
 input, textarea {
-  padding: 10px;
-  border: 1px solid #e2e2e2;
-  width: 100%;
-  margin-top: 25px;
+/*  padding: 10px;
+  border: 1px solid #e2e2e2;*/
+/*  width: 100%;*/
+
   font-size: 13px;
-  font-style: italic;
+ /* font-style: italic;
   font-weight: 300;
-  color: #aaa;
+  color: #aaa;*/
   outline: none; 
 }
 

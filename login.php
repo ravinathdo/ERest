@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+<?php
+
+session_start();
+?>
 <head>
     <meta charset="utf-8">
     <title>E-Restaurant</title>
@@ -11,6 +15,7 @@
     <link rel="stylesheet" href="css/templatemo_misc.css">
     <link rel="stylesheet" href="css/flexslider.css">
     <link rel="stylesheet" href="css/testimonails-slider.css">
+    <link href="css/erest-style.css" rel="stylesheet" type="text/css"/>
     <link href="css/erest-style.css" rel="stylesheet" type="text/css"/>
     <script src="js/vendor/modernizr-2.6.1-respond-1.1.0.min.js"></script>
 </head>
@@ -28,7 +33,7 @@
                     </div>
                     <div class="col-md-6">
                         <div class="cart-info">
-                     
+                           
                         </div>
                     </div>
                 </div>
@@ -44,7 +49,7 @@
                     </div>
                     <div class="col-md-6">
                         <div class="main-menu">
-                             <?php
+                           <?php
                              if(isset($_SESSION['user_role'])){
 								  if ($_SESSION['user_role'] == 'CUS')
                                 include './menu-customer.php';
@@ -65,37 +70,8 @@
     </header>
 
     <div id="slider">
-        <div class="flexslider">
-            <ul class="slides">
-                <li>
-                    <div class="slider-caption">
-                        <h1>Delicious Meals</h1>
-                        <p>Donec justo dui, semper vitae aliquam euzali, ornare pretium enim. Maecenas molestie diam
-                            <br><br>eget tellus luctus fermentum.</p>
-                        <!--<a href="single-post.html">Shop Now</a>-->
-                    </div>
-                    <img src="images/slide1.jpg" alt="" />
-                </li>
-                <li>
-                    <div class="slider-caption">
-                        <h1>SMART Parking</h1>
-                        <p>Nulla id iaculis ligula. Vivamus mattis quam eget urna tincidunt consequat. Nullam 
-                            <br><br>consectetur tempor neque vitae iaculis. Aliquam erat volutpat.</p>
-                        <!--<a href="single-post.html">More Details</a>-->
-                    </div>
-                    <img src="images/slide2.jpg" alt="" />
-                </li>
-                <li>
-                    <div class="slider-caption">
-                        <h1>SMART Serve</h1>
-                        <p>Maecenas fermentum est ut elementum vulputate. Ut vel consequat urna. Ut aliquet 
-                            <br><br>ornare massa, quis dapibus quam condimentum id.</p>
-                        <!--<a href="single-post.html">Get Ready</a>-->
-                    </div>
-                    <img src="images/slide3.jpg" alt="" />
-                </li>
-            </ul>
-        </div>
+
+
     </div>
 
 
@@ -103,10 +79,76 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="heading-section">
-                        <h2>WE ARE SMART</h2>
-                        <img src="images/under-heading.png" alt="" >
-                    </div>
+                    <h4 class="titleStyle">Login</h4>
+                    <form name="form1" method="post" action="">
+                        <table width="50%" border="0" cellspacing="2" cellpadding="2">
+                            <tr>
+                                <td width="34%" align="right"><strong>Username</strong></td>
+                                <td width="2%">&nbsp;</td>
+                                <td width="64%"><input type="text" name="username" id="username" class="form-control" required></td>
+                            </tr>
+                            <tr>
+                                <td align="right"><strong>Password</strong></td>
+                                <td>&nbsp;</td>
+                                <td><input type="password" name="password" id="password" class="form-control" required></td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td><input type="submit" name="btnLog" value="Login" class="btn btn-warning"/>&nbsp;</td>
+                            </tr>
+                        </table>
+                    </form>
+
+
+                    <?php
+					ob_start();
+					
+                    if (isset($_POST['btnLog'])) {
+                        $username = $_POST['username'];
+                        $password = $_POST['password'];
+
+                        // Create connection
+                        include './_function.php';
+                        $conn = getDBConnection();
+// Check connection
+                        if (!$conn) {
+                            die("Connection failed: " . mysqli_connect_error());
+                        }
+                        $sql = "SELECT * FROM user WHERE username = '$username' AND PASSWORD = PASSWORD('$password') AND status = 'ACT' ";
+
+                        $result = mysqli_query($conn, $sql);
+                        if (mysqli_num_rows($result) > 0) {
+                            // output data of each row
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                $_SESSION['user_id'] = $row["id"];
+                                $_SESSION['user_username'] = $row["username"];
+                                $_SESSION['user_role'] = $row["role"];
+                                $_SESSION['user_firstname'] = $row["firstname"];
+								
+								//echo 'OKYYYYY';
+								//ob_start();
+                                header("Location:home.php");
+//                                echo '<script type="text/javascript">';
+//echo 'window.location.href="home.php";';
+//echo '</script>';
+								//ob_end_flush();
+                            }
+                        } else {
+                            ob_end_flush();
+							?>
+                            <div class="msgCenter">
+                                <span class="btn btn-danger">Invalid username or password</span>
+                            </div>
+                            <?php
+                        }
+
+                        mysqli_close($conn);
+                    }
+					
+                    ?>  
+
+
                 </div>
             </div>
             <div class="row">
@@ -306,7 +348,7 @@
     </div>
 
     <footer>
-       <?php include './footer.php';?>
+
     </footer>
 
 
