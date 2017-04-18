@@ -75,7 +75,7 @@ session_start();
                         <div class="main-menu">
                              <?php
                          
-									 include './menu-visitor.php';
+                             include_once './menu-visitor.php';
 									
                             ?>
                         </div>
